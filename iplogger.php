@@ -41,10 +41,12 @@
    fwrite($log, "IP Adress: {$ip}");
    fwrite($log, stuff($ip));
    fwrite($log, "\n\n-----------Location--------------\n\n");
-   fwrite($log, "\n\nCity:" . $location->city . PHP_EOL);
+   fwrite($log, "\n\nCity (Inaccurate):" . $location->city . PHP_EOL);
 	fwrite($log, "Region:" . $location->region . PHP_EOL);
 	fwrite($log, "Country:" . $location->country . PHP_EOL);
 	fwrite($log, "Location:" . $location->loc . PHP_EOL);
 	fwrite($log, "Isp: " . $location->org . PHP_EOL);
+    fwrite($log, "Hostname: " . $location->hostname .PHP_EOL);
+    fwrite($log, "Postal_code:" . $location->postal ."\n");
    fclose($log);
-   ?>
+
