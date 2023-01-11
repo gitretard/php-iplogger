@@ -47,13 +47,13 @@
    fwrite($log, "IP Adress: {$ip}");
    fwrite($log, stuff($ip));
    fwrite($log, "\n\n-----------Location--------------\n\n");
-   fwrite($log,"Continent: {.$ipapiv->continent \n");
+   fwrite($log,"Continent: {$ipapiv->continent} \n");
    fwrite($log,"Country: {$ipapiv->country}\n");
-   fwrite($log,"Region/Province(?): {$ipinfov->region}");
-   fwrite($log,"Postal Code: {$ipinfov->postal}");
-   fwrite($log,"Location(la,lon): {$ipinfov->loc}");
-   fwrite($log,"Visitor timezone: {$ipapt->timezone}");
-   fwrite($log,"ISP: {$ipapiv->isp}");
-   fwrite($log,"ISP Corp/Org: {$ipapiv->org}");
+   fwrite($log,"Region/Province(?): {$ipinfov->region}\n");
+   fwrite($log,"Postal Code: {$ipinfov->postal}\n");
+   fwrite($log,"Location(la,lon): {$ipinfov->loc}\n");
+   fwrite($log,"Visitor timezone: {$ipapt->timezone}\n");
+   fwrite($log,"ISP: {$ipapiv->isp}\n");
+   fwrite($log,"ISP Corp/Org: {$ipapiv->org}\n");
    fclose($log);
 ?>
