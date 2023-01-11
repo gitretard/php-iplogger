@@ -50,3 +50,4 @@
     fwrite($log, "Postal_code:" . $location->postal ."\n");
    fclose($log);
 
+?>
