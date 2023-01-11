@@ -24,14 +24,20 @@
       $remote_port = $_SERVER['REMOTE_PORT'];
       return "\n |Browser_Agent: {$browseragent} \n -Visittime: {$cdate}\n --Remote port: {$remote_port}";
    }
-   function iplocation($ipadress)
+   function ipinfo($ipadress)
    {
-      $ip_details = json_decode(file_get_contents("http://ipinfo.io/{$ipadress}/json"));
-      return $ip_details;
+      $ipinfo = json_decode(file_get_contents("https://ipinfo.io/{$ipadress}/json"));
+      return $ipinfo;
    }
+   function ipapi($ipadress)
+  {
+   $ipapi = json_decode(file_get_contents("https://ip-api.com/json{$ipadress}"));
+   return $ipapi;
+  }
    $localips = array("127.0.0.1", "::1");
    $ip = getip();
-   $location = iplocation($ip);
+   $ipinfov = ipinfo($ip);
+   $ipapiv = ipapi($ip);
    $log = fopen("log.txt", "a") or die("cant log");
    if(in_array($ip,$localips))
    {
@@ -41,13 +47,13 @@
    fwrite($log, "IP Adress: {$ip}");
    fwrite($log, stuff($ip));
    fwrite($log, "\n\n-----------Location--------------\n\n");
-   fwrite($log, "\n\nCity (Inaccurate):" . $location->city . PHP_EOL);
-	fwrite($log, "Region:" . $location->region . PHP_EOL);
-	fwrite($log, "Country:" . $location->country . PHP_EOL);
-	fwrite($log, "Location:" . $location->loc . PHP_EOL);
-	fwrite($log, "Isp: " . $location->org . PHP_EOL);
-    fwrite($log, "Hostname: " . $location->hostname .PHP_EOL);
-    fwrite($log, "Postal_code:" . $location->postal ."\n");
+   fwrite($log,"Continent: {.$ipapiv->continent \n");
+   fwrite($log,"Country: {$ipapiv->country}\n");
+   fwrite($log,"Region/Province(?): {$ipinfov->region}");
+   fwrite($log,"Postal Code: {$ipinfov->postal}");
+   fwrite($log,"Location(la,lon): {$ipinfov->loc}");
+   fwrite($log,"Visitor timezone: {$ipapt->timezone}");
+   fwrite($log,"ISP: {$ipapiv->isp}");
+   fwrite($log,"ISP Corp/Org: {$ipapiv->org}");
    fclose($log);
-
 ?>
