@@ -1,4 +1,5 @@
 <?php
+   // Set your own timezone
    date_default_timezone_set("Asia/Bangkok");
    // Turn off display warns
    ini_set('display_errors','Off');
